@@ -1,8 +1,8 @@
 package com.epam.tests;
 
+import com.epam.tests_logic.entity.User;
 import org.testng.annotations.*;
 import static com.epam.tests_logic.ui.TestSite.homePage;
-import static com.epam.tests_logic.ui.TestSite.loginPage;
 import static org.openqa.selenium.Keys.ENTER;
 import static org.testng.Assert.*;
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
@@ -15,71 +15,71 @@ public class TestLogin extends InitTests{
         logger.info("Open page and check it");
     }
 
-    @Test
-    public void checkHomePage(){
+    @Test(dataProvider = "userEntity", dataProviderClass = TestData.class)
+    public void checkHomePage(User user){
         logger.info("Start validation of home page");
         assertTrue(homePage.profileDDBtn.isDisplayed(), "There isn't button Profile");
         assertEquals(homePage.profileBtn.getText(), "");
         homePage.openLoginPage();
-        loginPage.credentialsInput("epam", "1234");
-        loginPage.submit.click();
+        homePage.loginOnHomePage.submit(user);
         assertTrue(homePage.profileDDBtn.isDisplayed(), "There isn't button Profile");
-        assertEquals(homePage.profileBtn.getText(), "PITER CHAILOVSKII");
+        assertEquals(homePage.profileBtn.getText(), user.fullName);
     }
 
     @Test
     public void checkLoginPage() {
         logger.info("Start validation of login page");
         homePage.openLoginPage();
-        assertTrue(loginPage.loginInp.isDisplayed());
-        assertTrue(loginPage.loginLbl.isDisplayed());
-        assertTrue(loginPage.pswInp.isDisplayed());
-        assertTrue(loginPage.pswLbl.isDisplayed());
-        assertTrue(loginPage.submit.isDisplayed());
-        assertEquals(loginPage.loginLbl.getText(), "Login");
-        assertEquals(loginPage.pswLbl.getText(), "Password");
-        assertEquals(loginPage.submit.getText(), "ENTER");
+        assertTrue(homePage.loginOnHomePage.name.isDisplayed());
+        assertTrue(homePage.loginOnHomePage.loginLbl.isDisplayed());
+        assertTrue(homePage.loginOnHomePage.psw.isDisplayed());
+        assertTrue(homePage.loginOnHomePage.pswLbl.isDisplayed());
+        assertTrue(homePage.loginOnHomePage.submit.isDisplayed());
+        assertEquals(homePage.loginOnHomePage.loginLbl.getText(), "Login");
+        assertEquals(homePage.loginOnHomePage.pswLbl.getText(), "Password");
+        assertEquals(homePage.loginOnHomePage.submit.getText(), "ENTER");
     }
 
-    @Test(dataProvider = "correctData", dataProviderClass = TestData.class)
-    public void testPosClick(String login, String psw, String userName) {
+    @Test(dataProvider = "userEntity", dataProviderClass = TestData.class)
+    public void testPosClick(User user) {
         logger.info("Positive check with Click");
         homePage.openLoginPage();
-        loginPage.credentialsInput(login, psw);
-        loginPage.submit.click();
-        assertEquals(homePage.profileBtn.getText(), userName, "Incorrect user name");
+        homePage.loginOnHomePage.submit(user);
+        assertEquals(homePage.profileBtn.getText(), user.fullName, "Incorrect user name");
         assertTrue(homePage.logoutBtn.isDisplayed(), "There isn't Logout button");
     }
 
-    @Test(dataProvider = "correctData", dataProviderClass = TestData.class)
-    public void testPosEnter(String login, String psw, String userName) {
+    @Test(dataProvider = "userEntity", dataProviderClass = TestData.class)
+    public void testPosEnter(User user) {
         logger.info("Positive check with Enter");
         homePage.openLoginPage();
-        loginPage.credentialsInput(login, psw);
-        loginPage.pswInp.sendKeys(ENTER);
-        assertEquals(homePage.profileBtn.getText(), userName, "Incorrect user name");
+        homePage.loginOnHomePage.fill(user);
+        homePage.loginOnHomePage.psw.sendKeys(ENTER);
+        assertEquals(homePage.profileBtn.getText(), user.fullName, "Incorrect user name");
         assertTrue(homePage.logoutBtn.isDisplayed(), "There isn't Logout button");
     }
 
     @Test(dataProvider = "dataFromCSV", dataProviderClass = TestData.class)
     public void testNegCsv(String login, String psw) {
+//    public void testNegCsv(User user) {
         logger.info("Negative check with data from csv file");
         homePage.openLoginPage();
-        loginPage.credentialsInput(login, psw);
-        loginPage.submit.click();
-        assertTrue(loginPage.errorLbl.isDisplayed(), "There isn't error message");
-        assertEquals(loginPage.errorLbl.getText(), "* Login Faild", "Incorrect error message");
+        homePage.loginOnHomePage.credentialsInput(login, psw);
+        homePage.loginOnHomePage.submit.click();
+//        homePage.loginOnHomePage.submit(user);
+        assertTrue(homePage.loginOnHomePage.errorLbl.isDisplayed(), "There isn't error message");
+        assertEquals(homePage.loginOnHomePage.errorLbl.getText(), "* Login Faild", "Incorrect error message");
     }
 
     @Test(dataProvider = "incorrectData", dataProviderClass = TestData.class)
-    public void testIncompleteData(String login, String psw) {
-        logger.info("Login test for incomplete data");
+    public void testIncompleteData(User user) {
+        logger.info("Login resultsForm for incomplete data");
         homePage.openLoginPage();
-        loginPage.credentialsInput(login, psw);
-        loginPage.submit.click();
-        assertTrue(loginPage.errorLbl.isDisplayed(), "There isn't error message");
-        assertEquals(loginPage.errorLbl.getText(), "* Login Faild", "Incorrect error message");
+        homePage.loginOnHomePage.submit(user);
+        assertTrue(homePage.loginOnHomePage.errorLbl.isDisplayed(), "There isn't error message");
+        assertEquals(homePage.loginOnHomePage.errorLbl.getText(), "* Login Faild", "Incorrect error message");
     }
+
 
 //    @AfterMethod
 //    public void after(){
