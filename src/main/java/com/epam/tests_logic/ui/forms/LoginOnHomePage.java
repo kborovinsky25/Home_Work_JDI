@@ -7,8 +7,6 @@ import com.epam.jdi.uitests.web.selenium.elements.composite.Form;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindBy;
 import com.epam.tests_logic.entity.User;
 
-import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
-
 
 public class LoginOnHomePage extends Form<User> {
 
@@ -34,9 +32,4 @@ public class LoginOnHomePage extends Form<User> {
     @JFindBy(className = "login-txt")
     public ILabel errorLbl;
 
-    public void credentialsInput(String login, String psw) {
-        logger.info("Input credentials");
-        name.newInput(login);
-        this.psw.newInput(psw);
-    }
 }

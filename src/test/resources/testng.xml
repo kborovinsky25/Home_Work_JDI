@@ -1,11 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="HomeWorkJDI_1" thread-count="1">
+<suite name="HomeWorkJDI_1" parallel="methods" thread-count="3">
     <test name="Test pages">
         <classes>
-            <class name="com.epam.tests.TestLogin">
+            <class name="com.epam.tests.TestPages">
                 <methods>
-                    <include name="checkLoginPage" />
-                    <include name="checkHomePage"/>
+                    <include name="checkHomePage" />
+                    <include name="checkLoginForm"/>
                 </methods>
             </class>
         </classes>
@@ -14,10 +14,9 @@
         <classes>
             <class name="com.epam.tests.TestLogin">
                 <methods>
-                    <include name="testPosClick" />
-                    <include name="testPosEnter"/>
-                    <include name="testNegCsv" />
-                    <include name="testIncompleteData"/>
+                    <include name="testLoginPositive" />
+                    <include name="testLoginNegativeWrong"/>
+                    <include name="testLogout" />
                 </methods>
             </class>
         </classes>
