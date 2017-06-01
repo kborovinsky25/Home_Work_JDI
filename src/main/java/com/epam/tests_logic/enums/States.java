@@ -4,6 +4,7 @@ import com.epam.commons.linqinterfaces.JAction;
 import com.epam.jdi.uitests.core.preconditions.IPreconditions;
 import com.google.common.base.Supplier;
 
+import static com.epam.tests_logic.ui.TestSite.contactFormPage;
 import static com.epam.tests_logic.ui.TestSite.homePage;
 
 
@@ -14,7 +15,9 @@ public enum States implements IPreconditions {
     LOGGED_OUT(() -> !homePage.isLoggedIn(),
             () -> homePage.logOut()),
     LOG_IN_OUT_IS_OPENED(() -> homePage.loginFormIsVisible(),
-            () -> homePage.openLoginForm());
+            () -> homePage.openLoginForm()),
+    CONTACT_PAGE(() -> contactFormPage.isOpen(),
+            () -> homePage.openContactPage());
 
     public Supplier<Boolean> checkAction;
     public JAction moveToAction;

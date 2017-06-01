@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
 import static com.epam.tests_logic.ui.TestSite.homePage;
+import static com.epam.tests_logic.ui.TestSite.loginOnHomePage;
 import static com.epam.tests_logic.ui.TestSite.simpleTablePage;
 
 public class TestTables extends InitTests{
@@ -18,7 +19,7 @@ public class TestTables extends InitTests{
     @Test(dataProvider = "userEntity", dataProviderClass = TestData.class)
     public void test_1(User user) throws InterruptedException {
         homePage.openLoginPage();
-        homePage.loginOnHomePage.submit(user);
+        loginOnHomePage.submit(user);
 //        homePage.treeMenu.hoverAndClick("SERVICE|DATES");
 //        homePage.treeMenu.clickOn("SERVICE");
         homePage.menuDblClick("Service", "Simple Table");

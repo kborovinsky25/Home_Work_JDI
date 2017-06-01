@@ -3,6 +3,9 @@ package com.epam.tests_logic.ui;
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebSite;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JSite;
+import com.epam.tests_logic.ui.forms.ContactOnContactPage;
+import com.epam.tests_logic.ui.forms.LoginOnHomePage;
+import com.epam.tests_logic.ui.forms.ResultOnContactPage;
 import com.epam.tests_logic.ui.pages.ContactFormPage;
 import com.epam.tests_logic.ui.pages.DatePage;
 import com.epam.tests_logic.ui.pages.HomePage;
@@ -22,4 +25,9 @@ public class TestSite extends WebSite{
 
     @JPage(url = "/page6.htm", title = "Simple Table")
     public static SimpleTablePage simpleTablePage;
+
+    public static LoginOnHomePage loginOnHomePage;
+    public static ContactOnContactPage contactOnContactPage;
+    public static ResultOnContactPage resultOnContactPage;
+
 }

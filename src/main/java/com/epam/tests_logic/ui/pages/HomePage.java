@@ -8,7 +8,6 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindB
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JMenu;
 import com.epam.tests_logic.entity.User;
 import com.epam.tests_logic.entity.Users;
-import com.epam.tests_logic.ui.forms.LoginOnHomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,12 +15,12 @@ import org.openqa.selenium.support.FindBy;
 
 import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInState;
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
+import static com.epam.tests_logic.enums.States.LOGGED_IN;
 import static com.epam.tests_logic.enums.States.LOG_IN_OUT_IS_OPENED;
 import static com.epam.tests_logic.ui.TestSite.homePage;
+import static com.epam.tests_logic.ui.TestSite.loginOnHomePage;
 
 public class HomePage extends WebPage{
-
-    public LoginOnHomePage loginOnHomePage;
 
     @JFindBy(className = "profile-photo")
     public IButton profileBtn;
@@ -70,6 +69,11 @@ public class HomePage extends WebPage{
     public void openLoginForm(){
         homePage.profileBtn.click();
     }
+    //переделать на новый метод меню
+    public void openContactPage(){
+        isInState(LOGGED_IN);
+        homePage.navToContactPage.click();
+    }
 
     public void menuDblClick(String lvl1, String lvl2){
         Actions action = new Actions(getDriver());
@@ -79,8 +83,6 @@ public class HomePage extends WebPage{
 
     }
 
-    @JFindBy(xpath = "//ul/li/a")
-    public Menu menu;
 
     public void openLoginPage() {
         logger.info("Open Login page");
