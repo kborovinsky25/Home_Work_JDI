@@ -7,8 +7,7 @@ import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInSta
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
 import static com.epam.tests_logic.entity.Users.DEFAULT;
 import static com.epam.tests_logic.enums.States.CONTACT_PAGE;
-import static com.epam.tests_logic.ui.TestSite.contactOnContactPage;
-import static com.epam.tests_logic.ui.TestSite.resultOnContactPage;
+import static com.epam.tests_logic.ui.TestSite.contactFormPage;
 import static com.epam.web.matcher.testng.Assert.contains;
 
 public class TestContactForm extends InitTests{
@@ -21,11 +20,11 @@ public class TestContactForm extends InitTests{
     @Test
     public void testContactForm() {
         logger.info("Check the work of Contact page");
-        contactOnContactPage.submit(DEFAULT);
-        contains(resultOnContactPage.summary.getText(), "3");
-        contains(resultOnContactPage.name.getText(), DEFAULT.name);
-        contains(resultOnContactPage.lastName.getText(), DEFAULT.lastName);
-        contains(resultOnContactPage.description.getText(), DEFAULT.description);
+        contactFormPage.contactOnContactPage.submit(DEFAULT);
+        contains(contactFormPage.resultOnContactPage.summary.getText(), "3");
+        contains(contactFormPage.resultOnContactPage.name.getText(), DEFAULT.name);
+        contains(contactFormPage.resultOnContactPage.lastName.getText(), DEFAULT.lastName);
+        contains(contactFormPage.resultOnContactPage.description.getText(), DEFAULT.description);
     }
 
 }

@@ -8,6 +8,7 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindB
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JMenu;
 import com.epam.tests_logic.entity.User;
 import com.epam.tests_logic.entity.Users;
+import com.epam.tests_logic.ui.forms.LoginOnHomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -18,9 +19,10 @@ import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
 import static com.epam.tests_logic.enums.States.LOGGED_IN;
 import static com.epam.tests_logic.enums.States.LOG_IN_OUT_IS_OPENED;
 import static com.epam.tests_logic.ui.TestSite.homePage;
-import static com.epam.tests_logic.ui.TestSite.loginOnHomePage;
 
 public class HomePage extends WebPage{
+
+    public LoginOnHomePage loginOnHomePage;
 
     @JFindBy(className = "profile-photo")
     public IButton profileBtn;

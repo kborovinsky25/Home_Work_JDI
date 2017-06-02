@@ -2,6 +2,7 @@ package com.epam.tests;
 
 import com.epam.tests_logic.entity.User;
 import com.epam.web.matcher.junit.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInState;
@@ -10,13 +11,16 @@ import static com.epam.tests_logic.entity.Users.DEFAULT;
 import static com.epam.tests_logic.enums.States.LOGGED_IN;
 import static com.epam.tests_logic.enums.States.LOGGED_OUT;
 import static com.epam.tests_logic.ui.TestSite.homePage;
-import static com.epam.tests_logic.ui.TestSite.loginOnHomePage;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 
 public class TestLogin extends InitTests{
 
+    @BeforeClass
+    public void setUpClass(){
+//        homePage.open();
+    }
     @Test
     public void testLoginPositive(){
         logger.info("Positive check");
@@ -31,7 +35,7 @@ public class TestLogin extends InitTests{
         isInState(LOGGED_OUT);
         homePage.logIn(user);
         assertTrue(homePage.isErrorLogin(), "There isn't error message");
-        assertEquals(loginOnHomePage.errorLbl.getText(), "* Login Faild", "Incorrect error message");
+        assertEquals(homePage.loginOnHomePage.errorLbl.getText(), "* Login Faild", "Incorrect error message");
     }
     @Test
     public void testLogout(){
