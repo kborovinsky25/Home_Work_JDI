@@ -34,7 +34,7 @@
         <classes>
             <class name="com.epam.tests.TestDatePicker">
                 <methods>
-                    <include name="test_1"/>
+                    <include name="checkPrevNext"/>
                 </methods>
             </class>
         </classes>

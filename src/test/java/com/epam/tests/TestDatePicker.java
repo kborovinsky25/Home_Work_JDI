@@ -7,7 +7,9 @@ import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInSta
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
 import static com.epam.tests_logic.enums.States.DATES_PAGE;
 import static com.epam.tests_logic.ui.TestSite.datesPage;
-import static com.epam.web.matcher.testng.ScreenAssert.assertEquals;
+import static com.epam.web.matcher.testng.Assert.assertFalse;
+import static com.epam.web.matcher.testng.Assert.assertTrue;
+import static com.epam.web.matcher.testng.Assert.assertEquals;
 
 public class TestDatePicker extends InitTests{
     @BeforeMethod
@@ -17,17 +19,20 @@ public class TestDatePicker extends InitTests{
     }
 
     @Test
-    public void test_1() throws InterruptedException {
+    public void checkPrevNext() throws InterruptedException {
+        logger.info("Check the work of the DatePicker buttons");
         datesPage.datePicker.open();
-        Thread.sleep(2000);
+        String openTitle = datesPage.datePicker.getTitle();
         datesPage.datePicker.clickPrev();
-        Thread.sleep(3000);
+        assertFalse(openTitle.equals(datesPage.datePicker.getTitle()), "button Prev isn't work");
+        datesPage.datePicker.clickNext();
+        assertTrue(openTitle.equals(datesPage.datePicker.getTitle()), "button Next isn't work");
+
         datesPage.datePicker.setDate("12");
-        Thread.sleep(3000);
-        assertEquals(datesPage.datePicker.getText(), "05/12/2017");
+        assertEquals(datesPage.datePicker.getText(), "06/12/2017");
 //        datesPage.datePicker.clear();
 //        datesPage.datePicker.newInput("07/15/2016");
 //        assertEquals(datesPage.datePicker.getText(), "05/12/2017");
-        System.out.println(datesPage.datePicker.getDate());
+        System.out.println(datesPage.datePicker.getTitle());
     }
 }
