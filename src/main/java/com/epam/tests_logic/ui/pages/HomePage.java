@@ -6,8 +6,10 @@ import com.epam.jdi.uitests.web.selenium.elements.composite.Section;
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindBy;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JMenu;
+import com.epam.tests_logic.elements.DblLevelMenu;
 import com.epam.tests_logic.entity.User;
 import com.epam.tests_logic.entity.Users;
+import com.epam.tests_logic.enums.HeaderMenu;
 import com.epam.tests_logic.ui.forms.LoginOnHomePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -33,17 +35,14 @@ public class HomePage extends WebPage{
     @JFindBy(css = ".profile-photo span")
     public IButton profileName;
 
-    @JFindBy(xpath = "//span[contains(text(),'Contact form')]")
-    public IButton navToContactPage;
-
     @JFindBy(className = "dropdown-menu-login")
     public Section logInOutPanel;
 
-    @JMenu(levelLocators = {
-            @FindBy(xpath = "//ul/li/a"),
-            @FindBy(xpath = "//ul/li/ul/li/a")
+    @JMenu(jLevelLocators = {
+            @JFindBy(xpath = "//nav/ul/li/a"),
+            @JFindBy(xpath = "//nav/ul/li/ul/li/a")
     })
-    public Menu treeMenu;
+    public DblLevelMenu treeMenu;
 
     public void logIn(User user) {
         logger.info("LogIn");
@@ -71,36 +70,14 @@ public class HomePage extends WebPage{
     public void openLoginForm(){
         homePage.profileBtn.click();
     }
-    //переделать на новый метод меню
     public void openContactPage(){
         isInState(LOGGED_IN);
-        homePage.navToContactPage.click();
+        homePage.treeMenu.clickAndClick("CONTACT FORM");
     }
-
-    public void menuDblClick(String lvl1, String lvl2){
-        Actions action = new Actions(getDriver());
-        WebElement el1 = getDriver().findElement(By.xpath("//ul/li/a[contains(text(),'" + lvl1 + "')]"));
-        WebElement el2 = getDriver().findElement(By.xpath("//ul/li/ul/li/a[contains(text(),'" + lvl2 + "')]"));
-        action.moveToElement(el1).click().moveToElement(el2).click().build().perform();
-
+    public void openDatesPage(){
+        isInState(LOGGED_IN);
+        homePage.treeMenu.clickAndClick("SERVICE|DATES");
     }
 
 
-    public void openLoginPage() {
-        logger.info("Open Login page");
-        if (!loginOnHomePage.submit.isDisplayed()){
-            if (!homePage.profileBtn.getText().equalsIgnoreCase("")) {
-                logger.info("Need logout");
-                if (!logoutBtn.isDisplayed()) {
-                    profileBtn.click();
-                    logoutBtn.click();
-                } else {
-                    logoutBtn.click();
-                }
-            }
-            else {
-                profileBtn.click();
-            }
-        }
-    }
 }

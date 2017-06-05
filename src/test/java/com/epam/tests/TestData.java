@@ -31,5 +31,12 @@ public class TestData {
                 { Users.WRONG_PASSWORD}
         };
     }
+    @DataProvider
+    public static Object[][] testContactPage() {
+        return new Object[][] {
+                { Users.DEFAULT},
+                { Users.ADMIN}
+        };
+    }
 
 }

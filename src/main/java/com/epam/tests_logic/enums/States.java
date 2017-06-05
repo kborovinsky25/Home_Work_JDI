@@ -5,6 +5,7 @@ import com.epam.jdi.uitests.core.preconditions.IPreconditions;
 import com.google.common.base.Supplier;
 
 import static com.epam.tests_logic.ui.TestSite.contactFormPage;
+import static com.epam.tests_logic.ui.TestSite.datesPage;
 import static com.epam.tests_logic.ui.TestSite.homePage;
 
 
@@ -17,7 +18,9 @@ public enum States implements IPreconditions {
     LOG_IN_OUT_IS_OPENED(() -> homePage.loginFormIsVisible(),
             () -> homePage.openLoginForm()),
     CONTACT_PAGE(() -> contactFormPage.isOpen(),
-            () -> homePage.openContactPage());
+            () -> homePage.openContactPage()),
+    DATES_PAGE(() -> datesPage.isOpen(),
+            () -> homePage.openDatesPage());
 
     public Supplier<Boolean> checkAction;
     public JAction moveToAction;

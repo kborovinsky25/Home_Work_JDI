@@ -6,4 +6,6 @@ public class Users {
     public static User EMPTY_NAME = new User("", "1234", "");
     public static User WRONG_NAME = new User("ipam", "1234", "");
     public static User WRONG_PASSWORD = new User("epam", "klmn1", "");
+
+    public static User ADMIN = new User("epam", "1234", "Admin", "admin desription", "");
 }

@@ -13,9 +13,6 @@ public class ContactFormPage extends WebPage{
     public ContactOnContactPage contactOnContactPage;
     public ResultOnContactPage resultOnContactPage;
 
-    @JFindBy(css = ".results")
-    public TextList<Enum> resultsForm;
-
     public boolean isOpen() {
         return contactFormPage.verifyOpened();
     }

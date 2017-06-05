@@ -18,7 +18,7 @@ public class TestSite extends WebSite{
     public static ContactFormPage contactFormPage;
 
     @JPage(url = "/page4.htm", title = "Dates")
-    public static DatePage datePage;
+    public static DatePage datesPage;
 
     @JPage(url = "/page6.htm", title = "Simple Table")
     public static SimpleTablePage simpleTablePage;

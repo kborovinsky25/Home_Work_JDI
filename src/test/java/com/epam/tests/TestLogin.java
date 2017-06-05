@@ -17,10 +17,6 @@ import static org.testng.Assert.assertTrue;
 
 public class TestLogin extends InitTests{
 
-    @BeforeClass
-    public void setUpClass(){
-//        homePage.open();
-    }
     @Test
     public void testLoginPositive(){
         logger.info("Positive check");
