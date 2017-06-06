@@ -1,5 +1,6 @@
 package com.epam.tests;
 
+import com.epam.tests_logic.ui.forms.LoginOnHomePage;
 import org.testng.annotations.Test;
 
 import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInState;
@@ -12,6 +13,9 @@ import static com.epam.web.matcher.testng.Assert.assertEquals;
 import static com.epam.web.matcher.testng.Assert.assertTrue;
 
 public class TestPages extends InitTests{
+    public LoginOnHomePage loginForm(){
+        return homePage.loginOnHomePage;
+    }
 
     @Test
     public void checkHomePage(){
@@ -29,13 +33,13 @@ public class TestPages extends InitTests{
         logger.info("Start validation of login page");
         isInState(LOGGED_OUT);
         isInState(LOG_IN_OUT_IS_OPENED);
-        assertTrue(homePage.loginOnHomePage.name.isDisplayed(), "There isn't textbox for login");
-        assertTrue(homePage.loginOnHomePage.loginLbl.isDisplayed(), "There isn't label 'Login'");
-        assertTrue(homePage.loginOnHomePage.psw.isDisplayed(), "There isn't textbox for password");
-        assertTrue(homePage.loginOnHomePage.pswLbl.isDisplayed(), "There isn't label 'Password'");
-        assertTrue(homePage.loginOnHomePage.submit.isDisplayed(), "There isn't button 'Enter'");
-        assertEquals(homePage.loginOnHomePage.loginLbl.getText(), "Login", "Login label has text 'Login'");
-        assertEquals(homePage.loginOnHomePage.pswLbl.getText(), "Password", "Password label has text 'Password'");
-        assertEquals(homePage.loginOnHomePage.submit.getText(), "ENTER", "Enter button has text 'Enter'");
+        assertTrue(loginForm().name.isDisplayed(), "There isn't textbox for login");
+        assertTrue(loginForm().loginLbl.isDisplayed(), "There isn't label 'Login'");
+        assertTrue(loginForm().psw.isDisplayed(), "There isn't textbox for password");
+        assertTrue(loginForm().pswLbl.isDisplayed(), "There isn't label 'Password'");
+        assertTrue(loginForm().submit.isDisplayed(), "There isn't button 'Enter'");
+        assertEquals(loginForm().loginLbl.getText(), "Login", "Login label has text 'Login'");
+        assertEquals(loginForm().pswLbl.getText(), "Password", "Password label has text 'Password'");
+        assertEquals(loginForm().submit.getText(), "ENTER", "Enter button has text 'Enter'");
     }
 }

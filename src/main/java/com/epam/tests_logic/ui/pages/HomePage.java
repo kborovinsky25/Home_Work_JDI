@@ -1,7 +1,6 @@
 package com.epam.tests_logic.ui.pages;
 
 import com.epam.jdi.uitests.core.interfaces.common.IButton;
-import com.epam.jdi.uitests.web.selenium.elements.complex.Menu;
 import com.epam.jdi.uitests.web.selenium.elements.composite.Section;
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindBy;
@@ -9,13 +8,7 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.object
 import com.epam.tests_logic.elements.DblLevelMenu;
 import com.epam.tests_logic.entity.User;
 import com.epam.tests_logic.entity.Users;
-import com.epam.tests_logic.enums.HeaderMenu;
 import com.epam.tests_logic.ui.forms.LoginOnHomePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-
 import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInState;
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
 import static com.epam.tests_logic.enums.States.LOGGED_IN;
@@ -77,6 +70,10 @@ public class HomePage extends WebPage{
     public void openDatesPage(){
         isInState(LOGGED_IN);
         homePage.treeMenu.clickAndClick("SERVICE|DATES");
+    }
+    public void openSimpleTablePage(){
+        isInState(LOGGED_IN);
+        homePage.treeMenu.clickAndClick("SERVICE|SIMPLE TABLE");
     }
 
 

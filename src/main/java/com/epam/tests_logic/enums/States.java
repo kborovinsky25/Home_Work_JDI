@@ -4,9 +4,7 @@ import com.epam.commons.linqinterfaces.JAction;
 import com.epam.jdi.uitests.core.preconditions.IPreconditions;
 import com.google.common.base.Supplier;
 
-import static com.epam.tests_logic.ui.TestSite.contactFormPage;
-import static com.epam.tests_logic.ui.TestSite.datesPage;
-import static com.epam.tests_logic.ui.TestSite.homePage;
+import static com.epam.tests_logic.ui.TestSite.*;
 
 
 public enum States implements IPreconditions {
@@ -19,6 +17,8 @@ public enum States implements IPreconditions {
             () -> homePage.openLoginForm()),
     CONTACT_PAGE(() -> contactFormPage.isOpen(),
             () -> homePage.openContactPage()),
+    SIMPLE_TABLE_PAGE(() -> simpleTablePage.isOpen(),
+            () -> homePage.openSimpleTablePage()),
     DATES_PAGE(() -> datesPage.isOpen(),
             () -> homePage.openDatesPage());
 

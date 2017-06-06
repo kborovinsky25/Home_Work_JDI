@@ -1,6 +1,7 @@
 package com.epam.tests;
 
 import com.epam.tests_logic.entity.User;
+import com.epam.tests_logic.ui.forms.ResultOnContactPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -11,6 +12,10 @@ import static com.epam.tests_logic.ui.TestSite.contactFormPage;
 import static com.epam.web.matcher.testng.Assert.contains;
 
 public class TestContactForm extends InitTests{
+    public ResultOnContactPage result(){
+        return contactFormPage.resultOnContactPage;
+    }
+
     @BeforeMethod
     public void setUpMethod(){
         isInState(CONTACT_PAGE);
@@ -21,10 +26,10 @@ public class TestContactForm extends InitTests{
     public void testContactForm(User user) {
         logger.info("Check the work of Contact page, fill fields and submit");
         contactFormPage.contactOnContactPage.submit(user);
-        contains(contactFormPage.resultOnContactPage.summary.getText(), "3");
-        contains(contactFormPage.resultOnContactPage.name.getText(), user.name);
-        contains(contactFormPage.resultOnContactPage.lastName.getText(), user.lastName);
-        contains(contactFormPage.resultOnContactPage.description.getText(), user.description);
+        contains(result().summary.getText(), "3");
+        contains(result().name.getText(), user.name);
+        contains(result().lastName.getText(), user.lastName);
+        contains(result().description.getText(), user.description);
     }
 
 }
