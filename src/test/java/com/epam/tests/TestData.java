@@ -38,5 +38,17 @@ public class TestData {
                 { Users.ADMIN}
         };
     }
+    @DataProvider
+    public static Object[][] correctDate(){
+        return new Object[][]{{"06/15/2017"},
+                {"12/28/2117"},
+                {"01/01/1956"}};
+    }
+    @DataProvider
+    public static Object[][] incorrectDate(){
+        return new Object[][]{{"14/15/1017"},
+                {"12/43/2017"},
+                {"05/05/-12"}};
+    }
 
 }

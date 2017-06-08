@@ -9,8 +9,6 @@ import com.epam.jdi.uitests.web.selenium.elements.complex.Selector;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.WebAnnotationsUtil;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JMenu;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +45,8 @@ public class DblLevelMenu extends Menu implements IMenu{
         if(names != null && names.length != 0) {
             String[] split = this.SplitToList(names);
             if(split.length > this.menuLevelsLocators.size()) {
-                throw JDISettings.exception("Can't click and click on element (%s) by value: %s. Amount of locators (%s) less than select path length (%s)", new Object[]{this, PrintUtils.print(names, this.separator), Integer.valueOf(this.menuLevelsLocators.size()), Integer.valueOf(split.length)});
+                throw JDISettings.exception("Can't click and click on element (%s) by value: %s. Amount of locators (%s) less than select path length (%s)",
+                        new Object[]{this, PrintUtils.print(names, this.separator), Integer.valueOf(this.menuLevelsLocators.size()), Integer.valueOf(split.length)});
             } else {
                 if(split.length > 1) {
 //                    this.select((String[])Arrays.copyOfRange(split, 0, split.length - 1));
@@ -64,7 +63,8 @@ public class DblLevelMenu extends Menu implements IMenu{
     }
 
     public DblLevelMenu setUp(JMenu jMenu) {
-        this.menuLevelsLocators = jMenu.levelLocators().length > 0? LinqUtils.select(Arrays.asList(jMenu.levelLocators()), WebAnnotationsUtil::findByToBy):LinqUtils.select(Arrays.asList(jMenu.jLevelLocators()), WebAnnotationsUtil::findByToBy);
+        this.menuLevelsLocators = jMenu.levelLocators().length > 0? LinqUtils.select(Arrays.asList(jMenu.levelLocators()),
+                WebAnnotationsUtil::findByToBy):LinqUtils.select(Arrays.asList(jMenu.jLevelLocators()), WebAnnotationsUtil::findByToBy);
         if(!jMenu.separator().equals("")) {
             this.separator = jMenu.separator();
         }

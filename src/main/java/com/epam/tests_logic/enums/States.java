@@ -8,9 +8,8 @@ import static com.epam.tests_logic.ui.TestSite.*;
 
 
 public enum States implements IPreconditions {
-    LOGGED_IN(() -> homePage.isLoggedIn() && 2*2 == 4,
-            () -> {homePage.logIn();
-                System.out.println("Hello");}),
+    LOGGED_IN(() -> homePage.isLoggedIn(),
+            () -> homePage.logIn()),
     LOGGED_OUT(() -> !homePage.isLoggedIn(),
             () -> homePage.logOut()),
     LOG_IN_OUT_IS_OPENED(() -> homePage.loginFormIsVisible(),
