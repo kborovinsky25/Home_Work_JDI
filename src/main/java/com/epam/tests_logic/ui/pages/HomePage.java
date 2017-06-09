@@ -75,6 +75,10 @@ public class HomePage extends WebPage{
         isInState(LOGGED_IN);
         homePage.treeMenu.clickAndClick("SERVICE|SIMPLE TABLE");
     }
+    public void openComplexTablePage(){
+        isInState(LOGGED_IN);
+        homePage.treeMenu.clickAndClick("SERVICE|COMPLEX TABLE");
+    }
 
 
 }

@@ -1,6 +1,5 @@
 package com.epam.tests;
 
-import com.epam.tests_logic.entity.User;
 import com.epam.tests_logic.entity.Users;
 import org.testng.annotations.DataProvider;
 
@@ -14,14 +13,7 @@ public class TestData {
 //        System.out.println(data);
 //        return data;
 //    }
-    @DataProvider
-    public static Object[][] userEntity(){
-        return new Object[][] {{new User("epam",
-                                         "1234",
-                                         "testLastName",
-                                         "resultsForm description text",
-                                         "PITER CHAILOVSKII")}};
-    }
+
     @DataProvider
     public static Object[][] wrongOrIncompleteLogData() {
         return new Object[][] {
@@ -50,5 +42,26 @@ public class TestData {
                 {"12/43/2017"},
                 {"05/05/-12"}};
     }
-
+    @DataProvider
+    public static Object[][] contentSimpleTable(){
+        return new Object[][]{{
+                "||X||1|2|3||\n" +
+                "||1||Drivers|Selenium Custom|JavaScript, Appium, WinAPI, Sikuli||\n" +
+                "||2||Test Runner|TestNG, JUnit Custom|MSTest, NUnit, Epam||\n" +
+                "||3||Asserter|TestNG, JUnit, Custom|MSTest, NUnit, Epam||\n" +
+                "||4||Logger|Log4J, TestNG log, Custom|Epam, XML/Json logging, Hyper logging||\n" +
+                "||5||Reporter|Jenkins, Allure, Custom|EPAM Report portal, Serenity, TimCity, Hudson||\n" +
+                "||6||BDD/DSL|Custom|Cucumber, Jbehave, Thucydides, SpecFlow||"}};
+    }
+    @DataProvider
+    public static Object[][] contentComplexTable(){
+        return new Object[][]{{
+                "||X||1|2|3||\n" +
+                "||1||Drivers|Selenium Custom|JavaScript, Appium, WinAPI, Sikuli||\n" +
+                "||2||Test Runner|TestNG, JUnit Custom|MSTest, NUnit, Epam||\n" +
+                "||3||Asserter|TestNG, JUnit, Custom|MSTest, NUnit, Epam||\n" +
+                "||4||Logger|Log4J, TestNG log, Custom|Epam, XML/Json logging, Hyper logging||\n" +
+                "||5||Reporter|Jenkins, Allure, Custom|EPAM Report portal, Serenity, TimCity, Hudson||\n" +
+                "||6||BDD/DSL|Custom|Cucumber, Jbehave, Thucydides, SpecFlow||"}};
+    }
 }

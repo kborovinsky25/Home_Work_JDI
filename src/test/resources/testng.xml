@@ -44,9 +44,9 @@
     </test>
     <test name="Test Tables" preserve-order="true">
         <classes>
-            <class name="com.epam.tests.TestTables">
+            <class name="com.epam.tests.TestSimpleTable">
                 <methods>
-                    <include name="testSimpleTable"/>
+                    <include name="testContentSimpleTable"/>
                 </methods>
             </class>
         </classes>

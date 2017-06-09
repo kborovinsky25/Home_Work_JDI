@@ -18,6 +18,8 @@ public enum States implements IPreconditions {
             () -> homePage.openContactPage()),
     SIMPLE_TABLE_PAGE(() -> simpleTablePage.isOpen(),
             () -> homePage.openSimpleTablePage()),
+    COMPLEX_TABLE_PAGE(() -> complexTablePage.isOpen(),
+            () -> homePage.openComplexTablePage()),
     DATES_PAGE(() -> datesPage.isOpen(),
             () -> homePage.openDatesPage());
 

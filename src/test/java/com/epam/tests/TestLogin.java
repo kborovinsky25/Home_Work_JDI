@@ -1,8 +1,6 @@
 package com.epam.tests;
 
 import com.epam.tests_logic.entity.User;
-import com.epam.web.matcher.junit.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInState;
@@ -11,8 +9,7 @@ import static com.epam.tests_logic.entity.Users.DEFAULT;
 import static com.epam.tests_logic.enums.States.LOGGED_IN;
 import static com.epam.tests_logic.enums.States.LOGGED_OUT;
 import static com.epam.tests_logic.ui.TestSite.homePage;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static com.epam.web.matcher.testng.Assert.*;
 
 
 public class TestLogin extends InitTests{
@@ -22,24 +19,24 @@ public class TestLogin extends InitTests{
         logger.info("Positive check");
         isInState(LOGGED_OUT);
         homePage.logIn();
-        assertEquals(homePage.profileBtn.getText(), DEFAULT.fullName, "Incorrect user name");
-        assertTrue(homePage.isLoggedIn(), "There isn't Logout button");
+        areEquals(homePage.profileBtn.getText(), DEFAULT.fullName, "Incorrect user name");
+        isTrue(homePage.isLoggedIn(), "There isn't Logout button");
     }
     @Test(dataProvider = "wrongOrIncompleteLogData", dataProviderClass = TestData.class)
     public void testLoginNegativeWrong(User user){
         logger.info("Negative check with data from dataProvider");
         isInState(LOGGED_OUT);
         homePage.logIn(user);
-        assertTrue(homePage.isErrorLogin(), "There isn't error message");
-        assertEquals(homePage.loginOnHomePage.errorLbl.getText(), "* Login Faild", "Incorrect error message");
+        isTrue(homePage.isErrorLogin(), "There isn't error message");
+        areEquals(homePage.loginOnHomePage.errorLbl.getText(), "* Login Faild", "Incorrect error message");
     }
     @Test
     public void testLogout(){
         logger.info("Check logout");
         isInState(LOGGED_IN);
         homePage.logOut();
-        assertEquals(homePage.profileBtn.getText(), "", "Profile contains an extra text");
-        Assert.isFalse(homePage.isLoggedIn(), "Logout is failed");
+        areEquals(homePage.profileBtn.getText(), "", "Profile contains an extra text");
+        isFalse(homePage.isLoggedIn(), "Logout is failed");
     }
 
 //    @Test(dataProvider = "userEntity", dataProviderClass = TestData.class)

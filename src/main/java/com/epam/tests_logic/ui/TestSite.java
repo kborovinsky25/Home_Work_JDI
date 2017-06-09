@@ -3,12 +3,9 @@ package com.epam.tests_logic.ui;
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebSite;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JSite;
-import com.epam.tests_logic.ui.pages.ContactFormPage;
-import com.epam.tests_logic.ui.pages.DatePage;
-import com.epam.tests_logic.ui.pages.HomePage;
-import com.epam.tests_logic.ui.pages.SimpleTablePage;
+import com.epam.tests_logic.ui.pages.*;
 
-@JSite(domain = "https://jdi-framework.github.io/tests/")
+@JSite(domain = "https://epam.github.io/JDI/")
 public class TestSite extends WebSite{
 
     @JPage(url = "/index.htm", title = "Index Page")
@@ -22,5 +19,8 @@ public class TestSite extends WebSite{
 
     @JPage(url = "/page6.htm", title = "Simple Table")
     public static SimpleTablePage simpleTablePage;
+
+    @JPage(url = "/page5.htm", title = "Complex Table")
+    public static ComplexTablePage complexTablePage;
 
 }
