@@ -16,6 +16,7 @@
                 <methods>
                     <include name="testLoginPositive" />
                     <include name="testLoginNegativeWrong"/>
+                    <include name="testLoginPositiveEnter"/>
                     <include name="testLogout" />
                 </methods>
             </class>
@@ -47,6 +48,15 @@
             <class name="com.epam.tests.TestSimpleTable">
                 <methods>
                     <include name="testContentSimpleTable"/>
+                    <include name="checkFilter"/>
+                </methods>
+            </class>
+            <class name="com.epam.tests.TestComplexTable">
+                <methods>
+                    <include name="checkTableSize"/>
+                    <include name="checkTableContent"/>
+                    <!--<include name="checkCheckbox"/>-->
+                    <!--<include name="checkLink"/>-->
                 </methods>
             </class>
         </classes>

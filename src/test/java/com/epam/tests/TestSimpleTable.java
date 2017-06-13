@@ -1,9 +1,14 @@
 package com.epam.tests;
 
 import com.epam.jdi.uitests.core.interfaces.complex.interfaces.ITable;
+import com.epam.jdi.uitests.web.selenium.elements.complex.table.EntityTable;
+import com.epam.tests_logic.entity.SimpleTableElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
+import static com.epam.commons.LinqUtils.where;
 import static com.epam.jdi.uitests.core.interfaces.complex.interfaces.Column.inColumn;
 import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInState;
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
@@ -13,7 +18,7 @@ import static com.epam.web.matcher.testng.Assert.*;
 
 public class TestSimpleTable extends InitTests{
 
-    private ITable table(){
+    private EntityTable<SimpleTableElement, ?> table(){
         return simpleTablePage.simpleTable;
     }
     @BeforeMethod
@@ -31,9 +36,11 @@ public class TestSimpleTable extends InitTests{
         areEquals(table().getValue(), content, "table has incorrect content");
     }
     @Test
-    public void testSearchAndSelect(){
-        logger.info("Check that the table is visible and its contents are correct");
-        table().rowContains("XML", inColumn(2)).get(2).value.select();
-        System.out.println(table().cell(2, 4).getText());
+    public void checkFilter(){
+        logger.info("Check that the columns display the required text");
+        List<SimpleTableElement> rows = table().entities();
+        rows = where(rows, r -> r.framework.contains("Epam"));
+        isNotEmpty(rows, "the required text is not represented in the column");
+        areEquals(table().get(4).area, "Logger", "the required text is not represented in the row");
     }
 }

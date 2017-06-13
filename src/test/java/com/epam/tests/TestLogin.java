@@ -8,8 +8,10 @@ import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
 import static com.epam.tests_logic.entity.Users.DEFAULT;
 import static com.epam.tests_logic.enums.States.LOGGED_IN;
 import static com.epam.tests_logic.enums.States.LOGGED_OUT;
+import static com.epam.tests_logic.enums.States.LOG_IN_OUT_IS_OPENED;
 import static com.epam.tests_logic.ui.TestSite.homePage;
 import static com.epam.web.matcher.testng.Assert.*;
+import static org.openqa.selenium.Keys.ENTER;
 
 
 public class TestLogin extends InitTests{
@@ -38,16 +40,13 @@ public class TestLogin extends InitTests{
         areEquals(homePage.profileBtn.getText(), "", "Profile contains an extra text");
         isFalse(homePage.isLoggedIn(), "Logout is failed");
     }
-
-//    @Test(dataProvider = "userEntity", dataProviderClass = TestData.class)
-//    public void testPosEnter(User user) {
-//        logger.info("Positive check with Enter");
-//        homePage.openLoginPage();
-//        homePage.loginOnHomePage.fill(user);
-//        homePage.loginOnHomePage.psw.sendKeys(ENTER);
-//        assertEquals(homePage.profileBtn.getText(), user.fullName, "Incorrect user name");
-//        assertTrue(homePage.logoutBtn.isDisplayed(), "There isn't Logout button");
-//    }
-
-
+    @Test
+    public void testLoginPositiveEnter() {
+        logger.info("Positive check with Enter");
+        isInState(LOG_IN_OUT_IS_OPENED);
+        homePage.loginOnHomePage.fill(DEFAULT);
+        homePage.loginOnHomePage.psw.sendKeys(ENTER);
+        assertEquals(homePage.profileBtn.getText(), DEFAULT.fullName, "Incorrect user name");
+        assertTrue(homePage.logoutBtn.isDisplayed(), "There isn't Logout button");
+    }
 }
