@@ -29,10 +29,10 @@ public class TestContactForm extends InitTests{
     public void testContactForm(User user) {
         logger.info("Check the work of Contact page, fill fields and submit");
         contact().submit(user);
-        contains(result().summary.getText(), "3");
-        contains(result().name.getText(), user.name);
-        contains(result().lastName.getText(), user.lastName);
-        contains(result().description.getText(), user.description);
+        contains(result().summary.getText(), "3", "incorrect count of operation");
+        contains(result().name.getText(), user.name, "incorrect user name in result section");
+        contains(result().lastName.getText(), user.lastName, "incorrect last name in result section");
+        contains(result().description.getText(), user.description, "incorrect description in result section");
     }
 
 }

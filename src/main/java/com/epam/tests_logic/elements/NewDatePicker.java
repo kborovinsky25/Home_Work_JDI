@@ -4,6 +4,8 @@ import com.epam.jdi.uitests.core.interfaces.common.IDatePicker;
 import com.epam.jdi.uitests.web.selenium.elements.common.DatePicker;
 import com.epam.tests_logic.entity.Date;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,6 +39,7 @@ public class NewDatePicker extends DatePicker implements IDatePicker{
         this.getWebElement().click();
     }
     public void close(){
+        WebDriver dr = this.getDriver();
         this.getDriver().findElement(closeElement).click();
     }
     public void newInput(String date){

@@ -55,8 +55,8 @@
                 <methods>
                     <include name="checkTableSize"/>
                     <include name="checkTableContent"/>
-                    <!--<include name="checkCheckbox"/>-->
-                    <!--<include name="checkLink"/>-->
+                    <include name="checkCheckbox"/>
+                    <include name="checkLink"/>
                 </methods>
             </class>
         </classes>

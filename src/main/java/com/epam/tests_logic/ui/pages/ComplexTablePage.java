@@ -1,16 +1,14 @@
 package com.epam.tests_logic.ui.pages;
 
 import com.epam.jdi.uitests.core.interfaces.common.IButton;
-import com.epam.jdi.uitests.core.interfaces.common.ICheckBox;
-import com.epam.jdi.uitests.web.selenium.elements.complex.Dropdown;
 import com.epam.jdi.uitests.web.selenium.elements.complex.table.EntityTable;
 import com.epam.jdi.uitests.web.selenium.elements.composite.WebPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindBy;
-import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JTable;
 import com.epam.tests_logic.entity.Areas;
 import com.epam.tests_logic.entity.Skills;
-import com.epam.tests_logic.enums.DropList;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.TableHeaderTypes.ALL_HEADERS;
@@ -34,13 +32,17 @@ public class ComplexTablePage extends WebPage{
     public IButton reestablish;
     @JFindBy(xpath = "//button[.='Apply']")
     public IButton apply;
-    @JDropdown(root = @FindBy(xpath = "//*[@id='columns']/div/button"))
-//            jList = @JFindBy(css = ".dropdown-menu.open>ul>li>a>span"),
-//            jExpand = @JFindBy(css = ".btn.dropdown-toggle"),
-//            jValue = @JFindBy(css = ".dropdown-menu.open"))
-    public Dropdown<DropList> dropMenu;
 
     public boolean isOpen() {
         return complexTablePage.verifyOpened();
+    }
+    public void checkBoxClick(WebElement el){
+        ((JavascriptExecutor)this.getDriver()).executeScript("arguments[0].click()", el);
+    }
+    public boolean checkBoxIsChecked(WebElement el){
+        if (el.getAttribute("checked") == null){
+            return false;
+        }
+        return true;
     }
 }

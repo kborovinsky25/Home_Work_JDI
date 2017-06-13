@@ -9,7 +9,7 @@ import java.util.Formatter;
 /**
  * Created by Kirill_Borovinskii on 05.06.2017.
  */
-public class Utils {
+public class Utils{
     public static By.ByXPath getXpath(String xpath, String variable) {
         return new By.ByXPath(fillString(xpath, variable));
     }
@@ -24,5 +24,4 @@ public class Utils {
         int[] numArr = Arrays.stream(input.split(regex)).mapToInt(Integer::parseInt).toArray();
         return new Date(numArr[1], numArr[0], numArr[2]);
     }
-
 }
