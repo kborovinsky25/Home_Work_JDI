@@ -5,57 +5,95 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.epam</groupId>
-    <artifactId>lesson_JDI_1</artifactId>
+    <artifactId>Home_Work_JDI_1</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.surefire.plugin.version>2.20</maven.surefire.plugin.version>
+        <maven.compile.plugin.version>3.6.1</maven.compile.plugin.version>
+
+        <selenium.version>3.4.0</selenium.version>
+
+        <testng.version>6.11</testng.version>
+        <jdi.version>1.0.71</jdi.version>
+        <lombok.version>1.16.16</lombok.version>
+        <slf4j-simple.version>1.7.25</slf4j-simple.version>
+        <opencsv.version>2.3</opencsv.version>
+
+        <allure-testng-io.version>2.0-BETA10</allure-testng-io.version>
+        <allure-maven-io.version>2.8</allure-maven-io.version>
+        <aspectj.version>1.8.5</aspectj.version>
+        <allure.results.directory>${project.basedir}/target/allure-results</allure.results.directory>
+    </properties>
+
 
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>LATEST</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
-            <version>LATEST</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
-            <version>LATEST</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.opencsv</groupId>
-            <artifactId>opencsv</artifactId>
-            <version>LATEST</version>
+            <version>${selenium.version}</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>LATEST</version>
+            <version>${testng.version}</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>com.epam.jdi</groupId>
             <artifactId>jdi-uitest-web</artifactId>
-            <version>1.0.71</version>
+            <version>${jdi.version}</version>
         </dependency>
         <dependency>
             <groupId>com.epam.jdi</groupId>
             <artifactId>jdi-matchers</artifactId>
-            <version>1.0.71</version>
+            <version>${jdi.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.16</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j-simple.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>${opencsv.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure-testng-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-maven</artifactId>
+            <version>${allure-maven-io.version}</version>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.hamcrest</groupId>-->
+            <!--<artifactId>hamcrest-all</artifactId>-->
+            <!--<version>1.3</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
@@ -63,29 +101,41 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20</version>
+                <version>${maven.surefire.plugin.version}</version>
                 <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <goal>test</goal>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${allure.results.directory}</allure.results.directory>
+                    </systemPropertyVariables>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
             </plugin>
-
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>${maven.compile.plugin.version}</version>
                 <configuration>
                     <goal>test</goal>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
                     <encoding>UTF-8</encoding>
                     <fork>true</fork>
-                    <executable>C:\Program Files\Java\jdk1.8.0_131\bin\javac</executable>
+                    <!--<executable>C:\Program Files\Java\jdk1.8.0_131\bin\javac</executable>-->
                 </configuration>
             </plugin>
-
         </plugins>
+
         <resources>
             <resource>
                 <directory>src/test/resources</directory>
@@ -99,5 +149,21 @@
         </testResources>
     </build>
 
-
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>${allure-maven-io.version}</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>

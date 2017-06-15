@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="HomeWorkJDI_1" thread-count="3" parallel="tests">
-    <test name="Test pages" preserve-order="true">
+    <test name="Test pages" preserve-order="true" enabled="true">
         <classes>
             <class name="com.epam.tests.TestPages">
                 <methods>
@@ -10,7 +10,7 @@
             </class>
         </classes>
     </test>
-    <test name="Test registration" preserve-order="true">
+    <test name="Test registration" preserve-order="true" enabled="false">
         <classes>
             <class name="com.epam.tests.TestLogin">
                 <methods>
@@ -22,7 +22,7 @@
             </class>
         </classes>
     </test>
-    <test name="Test Contact page" preserve-order="true">
+    <test name="Test Contact page" preserve-order="true" enabled="false">
         <classes>
             <class name="com.epam.tests.TestContactForm">
                 <methods>
@@ -31,7 +31,7 @@
             </class>
         </classes>
     </test>
-    <test name="Test Dates page" preserve-order="true">
+    <test name="Test Dates page" preserve-order="true" enabled="false">
         <classes>
             <class name="com.epam.tests.TestDatePicker">
                 <methods>
@@ -43,7 +43,7 @@
             </class>
         </classes>
     </test>
-    <test name="Test Tables" preserve-order="true">
+    <test name="Test Tables" preserve-order="true" enabled="false">
         <classes>
             <class name="com.epam.tests.TestSimpleTable">
                 <methods>
