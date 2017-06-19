@@ -6,6 +6,7 @@ import com.epam.tests_logic.entity.Skills;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Title;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ import static com.epam.web.matcher.testng.Assert.*;
 /**
  * Created by Kirill_Borovinskii on 09.06.2017.
  */
+@Title("Check page with Complex table")
 public class TestComplexTable extends InitTests {
     private EntityTable<Areas, Skills> table(){
         return complexTablePage.complexTable;

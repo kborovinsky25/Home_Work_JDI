@@ -1,21 +1,21 @@
 package com.epam.tests;
 
-import com.epam.jdi.uitests.core.interfaces.complex.interfaces.ITable;
 import com.epam.jdi.uitests.web.selenium.elements.complex.table.EntityTable;
 import com.epam.tests_logic.entity.SimpleTableElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Title;
 
 import java.util.List;
 
 import static com.epam.commons.LinqUtils.where;
-import static com.epam.jdi.uitests.core.interfaces.complex.interfaces.Column.inColumn;
 import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInState;
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
 import static com.epam.tests_logic.enums.States.SIMPLE_TABLE_PAGE;
 import static com.epam.tests_logic.ui.TestSite.simpleTablePage;
 import static com.epam.web.matcher.testng.Assert.*;
 
+@Title("Check page with Simple table")
 public class TestSimpleTable extends InitTests{
 
     private EntityTable<SimpleTableElement, ?> table(){

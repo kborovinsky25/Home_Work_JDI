@@ -2,6 +2,7 @@ package com.epam.tests;
 
 import com.epam.tests_logic.entity.User;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Title;
 
 import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInState;
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
@@ -13,7 +14,7 @@ import static com.epam.tests_logic.ui.TestSite.homePage;
 import static com.epam.web.matcher.testng.Assert.*;
 import static org.openqa.selenium.Keys.ENTER;
 
-
+@Title("Check login/logout")
 public class TestLogin extends InitTests{
 
     @Test

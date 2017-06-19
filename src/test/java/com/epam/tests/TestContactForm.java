@@ -5,6 +5,7 @@ import com.epam.tests_logic.ui.forms.ContactOnContactPage;
 import com.epam.tests_logic.ui.forms.ResultOnContactPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Title;
 
 import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInState;
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
@@ -12,6 +13,7 @@ import static com.epam.tests_logic.enums.States.CONTACT_PAGE;
 import static com.epam.tests_logic.ui.TestSite.contactFormPage;
 import static com.epam.web.matcher.testng.Assert.contains;
 
+@Title("Check page with Contact form")
 public class TestContactForm extends InitTests{
     private ResultOnContactPage result(){
         return contactFormPage.resultOnContactPage;

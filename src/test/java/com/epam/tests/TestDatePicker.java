@@ -3,6 +3,7 @@ package com.epam.tests;
 import com.epam.tests_logic.elements.NewDatePicker;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Title;
 
 import static com.epam.jdi.uitests.core.preconditions.PreconditionsState.isInState;
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
@@ -10,6 +11,7 @@ import static com.epam.tests_logic.enums.States.DATES_PAGE;
 import static com.epam.tests_logic.ui.TestSite.datesPage;
 import static com.epam.web.matcher.testng.Assert.*;
 
+@Title("Check page with Date Picker")
 public class TestDatePicker extends InitTests{
     private NewDatePicker date(){
         return datesPage.datePicker;
