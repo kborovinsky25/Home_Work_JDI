@@ -10,7 +10,7 @@
             </class>
         </classes>
     </test>
-    <test name="Test registration" preserve-order="true" enabled="false">
+    <test name="Test registration" preserve-order="true" enabled="true">
         <classes>
             <class name="com.epam.tests.TestLogin">
                 <methods>
@@ -22,7 +22,7 @@
             </class>
         </classes>
     </test>
-    <test name="Test Contact page" preserve-order="true" enabled="false">
+    <test name="Test Contact page" preserve-order="true" enabled="true">
         <classes>
             <class name="com.epam.tests.TestContactForm">
                 <methods>
@@ -31,7 +31,7 @@
             </class>
         </classes>
     </test>
-    <test name="Test Dates page" preserve-order="true" enabled="false">
+    <test name="Test Dates page" preserve-order="true" enabled="true">
         <classes>
             <class name="com.epam.tests.TestDatePicker">
                 <methods>
@@ -43,7 +43,7 @@
             </class>
         </classes>
     </test>
-    <test name="Test Tables" preserve-order="true" enabled="false">
+    <test name="Test Tables" preserve-order="true" enabled="true">
         <classes>
             <class name="com.epam.tests.TestSimpleTable">
                 <methods>
