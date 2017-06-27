@@ -1,9 +1,9 @@
 package com.epam.tests;
 
+import com.epam.jdi.uitests.web.selenium.elements.common.CheckBox;
 import com.epam.jdi.uitests.web.selenium.elements.complex.table.EntityTable;
 import com.epam.tests_logic.entity.Areas;
 import com.epam.tests_logic.entity.Skills;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.yandex.qatools.allure.annotations.Title;
@@ -49,15 +49,15 @@ public class TestComplexTable extends InitTests {
         areEquals(table().getRow(1).HeaderRow.getValue(), "Microsoft Technologies", "Incorrect value in cell");
     }
     @Test
-    public void checkCheckbox() throws InterruptedException {
+    public void checkCheckbox(){
         logger.info("Check working checkboxes");
         complexTablePage.reestablish.click();
-        WebElement checkbox = table().getRow(2).Column2.checkBox;
-        isFalse(complexTablePage.checkBoxIsChecked(checkbox), "Checkbox is checked by default");
-        complexTablePage.checkBoxClick(checkbox);
-        isTrue(complexTablePage.checkBoxIsChecked(checkbox), "Checkbox isn't change state (not checked)");
-        complexTablePage.checkBoxClick(checkbox);
-        isFalse(complexTablePage.checkBoxIsChecked(checkbox), "Checkbox isn't change state (checked)");
+        CheckBox checkbox = table().getRow(2).Column2.checkBox;
+        isFalse(checkbox.isChecked(), "Checkbox is checked by default");
+        checkbox.check();
+        isTrue(checkbox.isChecked(), "Isn't worked Check for checkbox");
+        checkbox.uncheck();
+        isFalse(checkbox.isChecked(), "Isn't worked UnCheck for checkbox");
     }
     @Test
     public void checkLink(){

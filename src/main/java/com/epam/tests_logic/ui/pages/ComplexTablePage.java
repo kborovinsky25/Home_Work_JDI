@@ -7,8 +7,6 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindB
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JTable;
 import com.epam.tests_logic.entity.Areas;
 import com.epam.tests_logic.entity.Skills;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.TableHeaderTypes.ALL_HEADERS;
@@ -19,8 +17,6 @@ import static com.epam.tests_logic.ui.TestSite.complexTablePage;
  */
 public class ComplexTablePage extends WebPage{
     @JTable(root = @FindBy(css = "table.table-delete-body"),
-//            row = @FindBy(xpath = "//tbody/tr[%s]/td"),
-//            column = @FindBy(xpath = "//tbody/tr/td[%s]"),
             headerType = ALL_HEADERS,
             headers = @FindBy(xpath = "//thead/tr"),
             colStartIndex = 2,
@@ -30,19 +26,8 @@ public class ComplexTablePage extends WebPage{
 
     @JFindBy(xpath = "//button[.='Reestablish']")
     public IButton reestablish;
-    @JFindBy(xpath = "//button[.='Apply']")
-    public IButton apply;
 
     public boolean isOpen() {
         return complexTablePage.verifyOpened();
-    }
-    public void checkBoxClick(WebElement el){
-        ((JavascriptExecutor)this.getDriver()).executeScript("arguments[0].click()", el);
-    }
-    public boolean checkBoxIsChecked(WebElement el){
-        if (el.getAttribute("checked") == null){
-            return false;
-        }
-        return true;
     }
 }
